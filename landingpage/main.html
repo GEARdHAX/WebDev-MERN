@@ -1,0 +1,1867 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editkaro.in - Premium Video Editing & Social Media Marketing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    /* CSS Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* Colors */
+      --primary: #8B5CF6;
+      --primary-dark: #7C3AED;
+      --secondary: #06B6D4;
+      --accent: #F59E0B;
+      --success: #10B981;
+      --warning: #F59E0B;
+      --error: #EF4444;
+
+      /* Neutral Colors */
+      --bg-primary: #0A0A0B;
+      --bg-secondary: #1A1B23;
+      --bg-tertiary: #2D2E3F;
+      --text-primary: #FFFFFF;
+      --text-secondary: #B4B6CD;
+      --text-muted: #6B7280;
+
+      /* Gradients */
+      --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      --gradient-accent: linear-gradient(135deg, var(--accent) 0%, #F97316 100%);
+      --gradient-dark: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 100%);
+
+      /* Spacing */
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2rem;
+      --space-xl: 3rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Typography */
+      --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-size-xs: 0.75rem;
+      --font-size-sm: 0.875rem;
+      --font-size-base: 1rem;
+      --font-size-lg: 1.125rem;
+      --font-size-xl: 1.25rem;
+      --font-size-2xl: 1.5rem;
+      --font-size-3xl: 1.875rem;
+      --font-size-4xl: 2.25rem;
+      --font-size-5xl: 3rem;
+      --font-size-6xl: 3.75rem;
+
+      /* Transitions */
+      --transition-fast: 0.2s ease;
+      --transition-medium: 0.3s ease;
+      --transition-slow: 0.5s ease;
+
+      /* Border Radius */
+      --radius-sm: 0.375rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+      --radius-2xl: 1.5rem;
+      --radius-full: 9999px;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+
+    /* Loading Screen Styles */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    .loading-content {
+      text-align: center;
+      animation: fadeInUp 1s ease;
+    }
+
+    .loading-logo .logo-text {
+      font-size: var(--font-size-4xl);
+      font-weight: 800;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .loading-logo .logo-dot {
+      color: var(--accent);
+    }
+
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 4px solid rgba(139, 92, 246, 0.2);
+      border-top: 4px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: var(--space-md) auto;
+    }
+
+    .loading-text {
+      color: var(--text-secondary);
+      font-size: var(--font-size-lg);
+      font-weight: 500;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(20px);
+      background: rgba(10, 10, 11, 0.8);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: var(--transition-medium);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .logo-text {
+      font-size: var(--font-size-xl);
+      font-weight: 800;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .logo-dot {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--space-lg);
+    }
+
+    .nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition-fast);
+      position: relative;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--primary);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-primary);
+      transition: var(--transition-fast);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .nav-mobile {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .nav-mobile span {
+      width: 25px;
+      height: 3px;
+      background: var(--text-primary);
+      border-radius: var(--radius-full);
+      transition: var(--transition-fast);
+    }
+
+    .nav-mobile.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .nav-mobile.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-mobile.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 0.3;
+      }
+
+      50% {
+        opacity: 0.6;
+      }
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+      z-index: 2;
+    }
+
+    .hero-text {
+      animation: slideInLeft 1s ease;
+    }
+
+    @keyframes slideInLeft {
+      from {
+        transform: translateX(-50px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .hero-title {
+      font-size: var(--font-size-6xl);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: var(--space-md);
+    }
+
+    .title-line {
+      display: block;
+    }
+
+    .highlight {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: var(--font-size-lg);
+      color: var(--text-secondary);
+      margin-bottom: var(--space-xl);
+      max-width: 500px;
+      line-height: 1.7;
+    }
+
+    .hero-cta {
+      display: flex;
+      /* justify-content: center; */
+      gap: var(--space-md);
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      padding: var(--space-md) var(--space-lg);
+      font-size: var(--font-size-base);
+      font-weight: 600;
+      border: none;
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      transition: var(--transition-medium);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: var(--gradient-primary);
+      color: white;
+      transform: translateY(0);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--primary);
+    }
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: slideInRight 1s ease;
+      min-height: 400px;
+    }
+
+    @keyframes slideInRight {
+      from {
+        transform: translateX(50px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .hero-image-container {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .blob-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      filter: blur(1px);
+    }
+
+    .blob {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-primary);
+      opacity: 0.8;
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      animation: blob 8s ease-in-out infinite;
+      transform-origin: 50% 50%;
+    }
+
+    .blob:nth-child(2) {
+      background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+      animation: blob 8s ease-in-out infinite reverse;
+      opacity: 0.6;
+      transform: scale(0.9);
+    }
+
+    .blob:nth-child(3) {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+      animation: blob 8s ease-in-out infinite;
+      animation-delay: 2s;
+      opacity: 0.4;
+      transform: scale(0.8);
+    }
+
+    @keyframes blob {
+
+      0%,
+      100% {
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        transform: rotate(0deg) scale(1);
+      }
+
+      25% {
+        border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+        transform: rotate(90deg) scale(1.1);
+      }
+
+      50% {
+        border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+        transform: rotate(180deg) scale(0.9);
+      }
+
+      75% {
+        border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+        transform: rotate(270deg) scale(1.05);
+      }
+    }
+
+    .hero-image {
+      position: relative;
+      z-index: 3;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow-2xl);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    .hero-particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 50%;
+      animation: particle 8s ease-in-out infinite;
+    }
+
+    .particle:nth-child(1) {
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .particle:nth-child(2) {
+      top: 60%;
+      right: 15%;
+      animation-delay: 2s;
+      background: var(--secondary);
+    }
+
+    .particle:nth-child(3) {
+      bottom: 30%;
+      left: 20%;
+      animation-delay: 4s;
+      background: var(--accent);
+    }
+
+    .particle:nth-child(4) {
+      top: 40%;
+      right: 30%;
+      animation-delay: 6s;
+      background: var(--primary);
+    }
+
+    @keyframes particle {
+
+      0%,
+      100% {
+        transform: translateY(0px) scale(1);
+        opacity: 0.7;
+      }
+
+      50% {
+        transform: translateY(-20px) scale(1.2);
+        opacity: 1;
+      }
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: var(--space-lg);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      40% {
+        transform: translateX(-50%) translateY(-10px);
+      }
+
+      60% {
+        transform: translateX(-50%) translateY(-5px);
+      }
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: var(--gradient-primary);
+    }
+
+    .scroll-text {
+      font-size: var(--font-size-sm);
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* Section Styles */
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--space-3xl);
+    }
+
+    .section-title {
+      font-size: var(--font-size-4xl);
+      font-weight: 800;
+      margin-bottom: var(--space-md);
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-subtitle {
+      font-size: var(--font-size-lg);
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Services Section */
+    .services {
+      padding: var(--space-3xl) 0;
+      background: var(--bg-secondary);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-lg);
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      text-align: center;
+      transition: var(--transition-medium);
+      backdrop-filter: blur(20px);
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-2xl);
+      border-color: var(--primary);
+    }
+
+    .service-icon {
+      font-size: var(--font-size-4xl);
+      margin-bottom: var(--space-md);
+    }
+
+    .service-title {
+      font-size: var(--font-size-xl);
+      font-weight: 700;
+      margin-bottom: var(--space-md);
+      color: var(--text-primary);
+    }
+
+    .service-desc {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Portfolio Section */
+    .portfolio {
+      padding: var(--space-3xl) 0;
+    }
+
+    .portfolio-filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xl);
+    }
+
+    .filter-btn {
+      padding: var(--space-sm) var(--space-md);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-secondary);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: var(--transition-fast);
+      font-weight: 500;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--gradient-primary);
+      color: white;
+      border-color: transparent;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: var(--space-lg);
+      transition: opacity 0.3s ease;
+    }
+
+    .portfolio-item {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: var(--bg-secondary);
+      transition: var(--transition-medium);
+      cursor: pointer;
+    }
+
+    .portfolio-item:hover {
+      transform: scale(1.02);
+      box-shadow: var(--shadow-2xl);
+    }
+
+    .portfolio-thumbnail {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: var(--transition-medium);
+    }
+
+    .portfolio-item:hover .portfolio-thumbnail {
+      transform: scale(1.1);
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--gradient-dark);
+      opacity: 0;
+      transition: var(--transition-medium);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .portfolio-item:hover .portfolio-overlay {
+      opacity: 1;
+    }
+
+    .play-btn {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--gradient-primary);
+      border: none;
+      color: white;
+      font-size: var(--font-size-xl);
+      cursor: pointer;
+      transition: var(--transition-medium);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .play-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .portfolio-info {
+      padding: var(--space-md);
+    }
+
+    .portfolio-title {
+      font-size: var(--font-size-lg);
+      font-weight: 600;
+      margin-bottom: var(--space-xs);
+      color: var(--text-primary);
+    }
+
+    .portfolio-category {
+      color: var(--primary);
+      font-size: var(--font-size-sm);
+      font-weight: 500;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: var(--space-3xl) 0;
+      background: var(--bg-secondary);
+    }
+
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: start;
+    }
+
+    .contact-title {
+      font-size: var(--font-size-4xl);
+      font-weight: 800;
+      margin-bottom: var(--space-md);
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .contact-subtitle {
+      font-size: var(--font-size-lg);
+      color: var(--text-secondary);
+      margin-bottom: var(--space-xl);
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .contact-icon {
+      font-size: var(--font-size-lg);
+    }
+
+    .contact-text {
+      color: var(--text-secondary);
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .form-group {
+      position: relative;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: var(--space-md);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      color: var(--text-primary);
+      font-size: var(--font-size-base);
+      transition: var(--transition-fast);
+      resize: vertical;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+    }
+
+    .form-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .form-label {
+      position: absolute;
+      top: -8px;
+      left: var(--space-md);
+      background: var(--bg-secondary);
+      color: var(--primary);
+      font-size: var(--font-size-sm);
+      font-weight: 500;
+      padding: 0 var(--space-xs);
+      opacity: 0;
+      transition: var(--transition-fast);
+    }
+
+    .form-input:focus+.form-label,
+    .form-input:not(:placeholder-shown)+.form-label {
+      opacity: 1;
+    }
+
+    .full-width {
+      width: 100%;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--bg-primary);
+      padding: var(--space-xl) 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-md);
+    }
+
+    .footer-tagline {
+      color: var(--text-secondary);
+      margin-top: var(--space-xs);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: var(--space-md);
+    }
+
+    .social-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition-fast);
+    }
+
+    .social-link:hover {
+      color: var(--primary);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-muted);
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(20px);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      max-width: 900px;
+      width: 100%;
+      position: relative;
+      animation: modalSlideIn 0.3s ease;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      font-size: var(--font-size-2xl);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-fast);
+    }
+
+    .modal-close:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-video {
+      width: 100%;
+    }
+
+    .modal-video video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .modal-info {
+      padding: var(--space-md);
+    }
+
+    #modalTitle {
+      font-size: var(--font-size-xl);
+      font-weight: 600;
+      margin-bottom: var(--space-xs);
+    }
+
+    #modalCategory {
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    /* Animation Classes */
+    .fade-in {
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .animate-on-scroll.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: var(--primary);
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .hero-cta {
+        justify-content: center;
+      }
+
+      .hero-text {
+        margin-top: 100px;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+        text-align: center;
+      }
+
+      .contact-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+      }
+
+      .hero-title {
+        font-size: var(--font-size-5xl);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 11, 0.95);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: var(--space-lg);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all var(--transition-medium);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .nav-mobile {
+        display: flex;
+      }
+
+      .hero-title {
+        font-size: var(--font-size-4xl);
+      }
+
+      .section-title {
+        font-size: var(--font-size-3xl);
+      }
+
+      .portfolio-filters {
+        gap: var(--space-xs);
+      }
+
+      .filter-btn {
+        padding: var(--space-xs) var(--space-sm);
+        font-size: var(--font-size-sm);
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        gap: var(--space-md);
+        text-align: center;
+      }
+
+      .hero-image-container {
+        width: 300px;
+        height: 300px;
+      }
+
+      .hero-image {
+        width: 200px;
+        height: 200px;
+      }
+
+      .floating-card {
+        width: 100px;
+        height: 60px;
+      }
+
+      .floating-card.card-1 {
+        left: -40px;
+      }
+
+      .floating-card.card-2 {
+        right: -40px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 var(--space-sm);
+      }
+
+      .nav-container {
+        padding: 0 var(--space-sm);
+      }
+
+      .hero-title {
+        font-size: var(--font-size-3xl);
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(1, 1fr);
+        gap: var(--space-sm);
+      }
+
+      .service-card {
+        padding: var(--space-lg);
+      }
+
+      .modal-content {
+        margin: var(--space-sm);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+      <div class="loading-content">
+        <div class="loading-logo">
+          <span class="logo-text">EditKaro<span class="logo-dot">.in</span></span>
+        </div>
+        <div class="loading-spinner">
+          <div class="spinner"></div>
+        </div>
+        <p class="loading-text">Crafting Visual Stories...</p>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <span class="logo-text">EditKaro<span class="logo-dot">.in</span></span>
+        </div>
+        <div class="nav-links">
+          <a href="#home" class="nav-link active">Home</a>
+          <a href="#portfolio" class="nav-link">Portfolio</a>
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <div class="nav-mobile">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            <span class="title-line">Crafting</span>
+            <span class="title-line highlight">Visual Stories</span>
+            <span class="title-line">That Convert</span>
+          </h1>
+          <p class="hero-subtitle">
+            Premium video editing and social media marketing that transforms your brand's narrative into compelling
+            visual experiences
+          </p>
+          <div class="hero-cta">
+            <button class="btn-primary">View Our Work</button>
+            <button class="btn-secondary">Get Started</button>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-image-container">
+            <div class="blob-container">
+              <div class="blob"></div>
+              <div class="blob"></div>
+              <div class="blob"></div>
+            </div>
+            <img
+              src="https://images.pexels.com/photos/3945313/pexels-photo-3945313.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt="Video Editing Professional" class="hero-image">
+            <div class="hero-particles">
+              <div class="particle"></div>
+              <div class="particle"></div>
+              <div class="particle"></div>
+              <div class="particle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-indicator">
+        <div class="scroll-line"></div>
+        <span class="scroll-text">Scroll</span>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Our Expertise</h2>
+          <p class="section-subtitle">Transforming ideas into visual masterpieces</p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">🎬</div>
+            <h3 class="service-title">Video Editing</h3>
+            <p class="service-desc">Professional video editing with cinematic quality and creative storytelling</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">📱</div>
+            <h3 class="service-title">Social Media Marketing</h3>
+            <p class="service-desc">Strategic content creation and marketing campaigns that drive engagement</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🎨</div>
+            <h3 class="service-title">Color Grading</h3>
+            <p class="service-desc">Advanced color correction and grading to enhance visual appeal</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">⚡</div>
+            <h3 class="service-title">Motion Graphics</h3>
+            <p class="service-desc">Dynamic animations and motion graphics that bring stories to life</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Our Portfolio</h2>
+          <p class="section-subtitle">Showcasing our best work across different categories</p>
+        </div>
+
+        <div class="portfolio-filters">
+          <button class="filter-btn active" data-filter="all">All Work</button>
+          <button class="filter-btn" data-filter="short-form">Short-form Videos</button>
+          <button class="filter-btn" data-filter="long-form">Long-form Videos</button>
+          <button class="filter-btn" data-filter="gaming">Gaming Edits</button>
+          <button class="filter-btn" data-filter="football">Football Edits</button>
+          <button class="filter-btn" data-filter="ecommerce">eCommerce Ads</button>
+          <button class="filter-btn" data-filter="documentary">Documentary Style</button>
+          <button class="filter-btn" data-filter="color-grading">Color Grading</button>
+          <button class="filter-btn" data-filter="anime">Anime Edits</button>
+          <button class="filter-btn" data-filter="ads">Advertisements</button>
+        </div>
+
+        <div class="portfolio-grid" id="portfolioGrid">
+          <!-- Portfolio items will be populated by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="contact-content">
+          <div class="contact-info">
+            <h2 class="contact-title">Ready to Transform Your Brand?</h2>
+            <p class="contact-subtitle">Let's create something extraordinary together</p>
+            <div class="contact-details">
+              <div class="contact-item">
+                <span class="contact-icon">📧</span>
+                <span class="contact-text">hello@editkaro.in</span>
+              </div>
+              <div class="contact-item">
+                <span class="contact-icon">📞</span>
+                <span class="contact-text">+91 98765 43210</span>
+              </div>
+              <div class="contact-item">
+                <span class="contact-icon">📍</span>
+                <span class="contact-text">Mumbai, India</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-form">
+            <form class="form" id="contactForm">
+              <div class="form-group">
+                <input type="text" class="form-input" placeholder="Your Name" required>
+                <label class="form-label">Name</label>
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-input" placeholder="Your Email" required>
+                <label class="form-label">Email</label>
+              </div>
+              <div class="form-group">
+                <select class="form-input" required>
+                  <option value="">Select Service</option>
+                  <option value="video-editing">Video Editing</option>
+                  <option value="social-media">Social Media Marketing</option>
+                  <option value="color-grading">Color Grading</option>
+                  <option value="motion-graphics">Motion Graphics</option>
+                </select>
+                <label class="form-label">Service</label>
+              </div>
+              <div class="form-group">
+                <textarea class="form-input" placeholder="Tell us about your project" rows="4" required></textarea>
+                <label class="form-label">Message</label>
+              </div>
+              <button type="submit" class="btn-primary full-width">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <span class="logo-text">EditKaro<span class="logo-dot">.in</span></span>
+            <p class="footer-tagline">Crafting visual stories that convert</p>
+          </div>
+          <div class="footer-social">
+            <a href="#" class="social-link">Instagram</a>
+            <a href="#" class="social-link">YouTube</a>
+            <a href="#" class="social-link">LinkedIn</a>
+            <a href="#" class="social-link">Twitter</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 EditKaro.in. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Video Lightbox Modal -->
+  <div id="videoModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      <div class="modal-video">
+        <video id="modalVideo" controls>
+          <source src="" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="modal-info">
+        <h3 id="modalTitle"></h3>
+        <p id="modalCategory"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Portfolio data
+    const portfolioData = [
+      {
+        id: 1,
+        title: "Social Media Reel",
+        category: "short-form",
+        thumbnail: "https://images.pexels.com/photos/3945313/pexels-photo-3945313.jpeg?auto=compress&cs=tinysrgb&w=800",
+        video: "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4"
+      },
+      {
+        id: 2,
+        title: "Brand Documentary",
+        category: "long-form",
+        thumbnail: "https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=800",
+        video: "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4"
+      },
+      {
+        id: 3,
+        title: "Gaming Montage",
+        category: "gaming",
+        thumbnail: "https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?auto=compress&cs=tinysrgb&w=800",
+        video: "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4"
+      },
+      {
+        id: 4,
+        title: "Football Highlights",
+        category: "football",
+        thumbnail: "https://images.pexels.com/photos/274422/pexels-photo-274422.jpeg?auto=compress&cs=tinysrgb&w=800",
+        video: "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4"
+      },
+      {
+        id: 5,
+        title: "Product Advertisement",
+        category: "ecommerce",
+        thumbnail: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800",
+        video: "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4"
+      },
+      {
+        id: 6,
+        title: "Corporate Documentary",
+        category: "documentary",
+        thumbnail: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800",
+        video: "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4"
+      },
+      {
+        id: 7,
+        title: "Color Grading Demo",
+        category: "color-grading",
+        thumbnail: "https://images.pexels.com/photos/269077/pexels-photo-269077.jpeg?auto=compress&cs=tinysrgb&w=800",
+        video: "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4"
+      },
+      {
+        id: 8,
+        title: "Anime AMV",
+        category: "anime",
+        thumbnail: "https://images.pexels.com/photos/1266808/pexels-photo-1266808.jpeg?auto=compress&cs=tinysrgb&w=800",
+        video: "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4"
+      },
+      {
+        id: 9,
+        title: "TV Commercial",
+        category: "ads",
+        thumbnail: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800",
+        video: "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4"
+      },
+      {
+        id: 10,
+        title: "Instagram Story",
+        category: "short-form",
+        thumbnail: "https://images.pexels.com/photos/887751/pexels-photo-887751.jpeg?auto=compress&cs=tinysrgb&w=800",
+        video: "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4"
+      },
+      {
+        id: 11,
+        title: "YouTube Video",
+        category: "long-form",
+        thumbnail: "https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=800",
+        video: "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4"
+      },
+      {
+        id: 12,
+        title: "Esports Highlight",
+        category: "gaming",
+        thumbnail: "https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?auto=compress&cs=tinysrgb&w=800",
+        video: "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4"
+      }
+    ];
+
+    class PortfolioApp {
+      constructor() {
+        this.currentFilter = 'all';
+        this.init();
+      }
+
+      init() {
+        this.setupEventListeners();
+        this.renderPortfolio();
+        this.setupScrollAnimations();
+        this.setupModal();
+        this.setupFormSubmission();
+      }
+
+      setupEventListeners() {
+        // Portfolio filter buttons
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(btn => {
+          btn.addEventListener('click', () => this.handleFilter(btn));
+        });
+
+        // Navigation smooth scroll
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+          link.addEventListener('click', (e) => this.handleNavClick(e, link));
+        });
+
+        // Hero CTA buttons
+        const primaryBtn = document.querySelector('.btn-primary');
+        const secondaryBtn = document.querySelector('.btn-secondary');
+
+        if (primaryBtn) {
+          primaryBtn.addEventListener('click', () => {
+            document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
+          });
+        }
+
+        if (secondaryBtn) {
+          secondaryBtn.addEventListener('click', () => {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+          });
+        }
+
+        // Mobile navigation toggle
+        const navMobile = document.querySelector('.nav-mobile');
+        const navLinksEl = document.querySelector('.nav-links');
+        if (navMobile) {
+          navMobile.addEventListener('click', () => this.toggleMobileNav(navMobile, navLinksEl));
+        }
+
+        // Scroll event for nav background
+        window.addEventListener('scroll', this.handleScroll);
+      }
+
+      handleFilter(clickedBtn) {
+        // Update active button
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        clickedBtn.classList.add('active');
+
+        // Update filter and render
+        this.currentFilter = clickedBtn.dataset.filter;
+        this.renderPortfolio();
+      }
+
+      handleNavClick(e, link) {
+        e.preventDefault();
+
+        // Update active nav link
+        document.querySelectorAll('.nav-link').forEach(nav => {
+          nav.classList.remove('active');
+        });
+        link.classList.add('active');
+
+        // Smooth scroll to section
+        const targetId = link.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+
+      renderPortfolio() {
+        const portfolioGrid = document.getElementById('portfolioGrid');
+        if (!portfolioGrid) return;
+
+        // Filter portfolio items
+        const filteredItems = this.currentFilter === 'all'
+          ? portfolioData
+          : portfolioData.filter(item => item.category === this.currentFilter);
+
+        // Render items with animation
+        portfolioGrid.style.opacity = '0';
+
+        setTimeout(() => {
+          portfolioGrid.innerHTML = filteredItems.map(item => `
+        <div class="portfolio-item fade-in" data-id="${item.id}" style="animation-delay: ${Math.random() * 0.5}s">
+          <img src="${item.thumbnail}" alt="${item.title}" class="portfolio-thumbnail" loading="lazy">
+          <div class="portfolio-overlay">
+            <button class="play-btn" onclick="portfolioApp.openModal(${item.id})">▶</button>
+          </div>
+          <div class="portfolio-info">
+            <h3 class="portfolio-title">${item.title}</h3>
+            <p class="portfolio-category">${this.getCategoryName(item.category)}</p>
+          </div>
+        </div>
+      `).join('');
+
+          portfolioGrid.style.opacity = '1';
+        }, 300);
+      }
+
+      getCategoryName(category) {
+        const categoryNames = {
+          'short-form': 'Short-form Videos',
+          'long-form': 'Long-form Videos',
+          'gaming': 'Gaming Edits',
+          'football': 'Football Edits',
+          'ecommerce': 'eCommerce Ads',
+          'documentary': 'Documentary Style',
+          'color-grading': 'Color Grading',
+          'anime': 'Anime Edits',
+          'ads': 'Advertisements'
+        };
+        return categoryNames[category] || category;
+      }
+
+      setupScrollAnimations() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animated');
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        });
+
+        // Observe elements for animation
+        document.querySelectorAll('.service-card, .section-header').forEach(el => {
+          el.classList.add('animate-on-scroll');
+          observer.observe(el);
+        });
+      }
+
+      setupModal() {
+        const modal = document.getElementById('videoModal');
+        const modalClose = document.querySelector('.modal-close');
+
+        if (modalClose) {
+          modalClose.addEventListener('click', () => this.closeModal());
+        }
+
+        if (modal) {
+          modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+              this.closeModal();
+            }
+          });
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            this.closeModal();
+          }
+        });
+      }
+
+      openModal(id) {
+        const item = portfolioData.find(item => item.id === id);
+        if (!item) return;
+
+        const modal = document.getElementById('videoModal');
+        const modalVideo = document.getElementById('modalVideo');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalCategory = document.getElementById('modalCategory');
+
+        if (modal && modalVideo && modalTitle && modalCategory) {
+          modalVideo.src = item.video;
+          modalTitle.textContent = item.title;
+          modalCategory.textContent = this.getCategoryName(item.category);
+
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+
+          // Play video
+          modalVideo.play().catch(console.error);
+        }
+      }
+
+      closeModal() {
+        const modal = document.getElementById('videoModal');
+        const modalVideo = document.getElementById('modalVideo');
+
+        if (modal && modalVideo) {
+          modal.classList.remove('active');
+          modalVideo.pause();
+          modalVideo.currentTime = 0;
+          document.body.style.overflow = '';
+        }
+      }
+
+      setupFormSubmission() {
+        const form = document.getElementById('contactForm');
+        if (form) {
+          form.addEventListener('submit', this.handleFormSubmit);
+        }
+      }
+
+      handleFormSubmit(e) {
+        e.preventDefault();
+
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+
+        // Show loading state
+        submitBtn.innerHTML = '<span class="loading"></span> Sending...';
+        submitBtn.disabled = true;
+
+        // Simulate form submission
+        setTimeout(() => {
+          submitBtn.textContent = 'Message Sent!';
+          submitBtn.style.background = 'var(--success)';
+
+          // Reset form
+          e.target.reset();
+
+          // Reset button after delay
+          setTimeout(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.style.background = '';
+            submitBtn.disabled = false;
+          }, 2000);
+        }, 1500);
+      }
+
+      toggleMobileNav(navMobile, navLinks) {
+        navMobile.classList.toggle('active');
+        navLinks.classList.toggle('active');
+      }
+
+      handleScroll() {
+        const nav = document.querySelector('.nav');
+        const scrolled = window.scrollY > 100;
+
+        if (scrolled) {
+          nav.style.background = 'rgba(10, 10, 11, 0.95)';
+        } else {
+          nav.style.background = 'rgba(10, 10, 11, 0.8)';
+        }
+
+        // Update active nav link based on scroll position
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        let currentSection = '';
+        sections.forEach(section => {
+          const sectionTop = section.getBoundingClientRect().top;
+          if (sectionTop <= 100) {
+            currentSection = section.id;
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${currentSection}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    }
+
+    // Initialize the app
+    let portfolioApp;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      portfolioApp = new PortfolioApp();
+      console.log('Editkaro.in Portfolio loaded successfully');
+    });
+
+    // Add loading screen functionality
+    window.addEventListener('load', () => {
+      const loadingScreen = document.querySelector('.loading-screen');
+      if (loadingScreen) {
+        setTimeout(() => {
+          loadingScreen.style.opacity = '0';
+          setTimeout(() => {
+            loadingScreen.style.display = 'none';
+          }, 500);
+        }, 1000);
+      }
+    });
+
+    // Handle page visibility for performance
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        document.body.style.animationPlayState = 'paused';
+      } else {
+        document.body.style.animationPlayState = 'running';
+      }
+    });
+
+    // Performance optimizations
+    window.addEventListener('load', () => {
+      // Lazy load images
+      const images = document.querySelectorAll('img[loading="lazy"]');
+      if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              img.src = img.dataset.src || img.src;
+              img.classList.remove('lazy');
+              imageObserver.unobserve(img);
+            }
+          });
+        });
+
+        images.forEach(img => imageObserver.observe(img));
+      }
+    });
+
+    // Error handling for videos
+    document.addEventListener('error', (e) => {
+      if (e.target.tagName === 'VIDEO') {
+        console.error('Video failed to load:', e.target.src);
+      }
+    }, true);
+
+    // Export for global access
+    window.portfolioApp = portfolioApp;
+  </script>
+</body>
+
+</html>
