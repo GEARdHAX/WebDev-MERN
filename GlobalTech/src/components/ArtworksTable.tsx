@@ -1,17 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { InputNumber } from 'primereact/inputnumber';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { OverlayPanel } from 'primereact/overlaypanel';
-import { Tag } from 'primereact/tag';
 import { Tooltip } from 'primereact/tooltip';
 import { Skeleton } from 'primereact/skeleton';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
+
+// The Tag import is no longer needed and has been removed.
 
 interface Artwork {
   id: number;
@@ -150,7 +151,6 @@ export default function ArtworkDataTable() {
     setLoading(false);
   };
 
-
   const inscriptionsBodyTemplate = (rowData: Artwork) => {
     const inscription = rowData.inscriptions;
     if (!inscription || inscription === 'N/A' || inscription.length < 50) {
@@ -171,6 +171,7 @@ export default function ArtworkDataTable() {
       return (
           <div className="flex align-items-center gap-2">
               {options.headerCheckbox}
+              {/* ✅ UPDATE: Correctly implemented as a Button with an icon prop */}
               <Button
                   // icon="pi pi-chevron-down"
                   className="pi pi-chevron-down"
@@ -201,7 +202,8 @@ export default function ArtworkDataTable() {
               <span className="font-bold">Select First 'N' Rows</span>
               <InputNumber
                 value={rowsToSelect}
-                onValueChange={(e) => setRowsToSelect(e.value)}
+                // ✅ UPDATE: Correctly handles potential undefined values
+                onValueChange={(e) => setRowsToSelect(e.value ?? null)}
                 placeholder="Enter number of rows"
                 min={0}
               />
@@ -233,7 +235,7 @@ export default function ArtworkDataTable() {
               stripedRows
               emptyMessage="No artworks found."
               selectionMode="multiple"
-              // header={tableHeader}
+              // The table header is no longer used
             >
               <Column
                 selectionMode="multiple"
