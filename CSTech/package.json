@@ -1,0 +1,22 @@
+{
+  "name": "agent-distribution-system",
+  "version": "1.0.0",
+  "description": "MERN Stack Agent Task Distribution System",
+  "scripts": {
+    "install:all": "npm install --prefix backend && npm install --prefix frontend",
+    "dev": "npm run dev:full --prefix backend",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "seed": "npm run seed --prefix backend",
+    "start": "npm run start --prefix backend"
+  },
+  "keywords": [
+    "mern",
+    "mongodb",
+    "express",
+    "react",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "MIT"
+}

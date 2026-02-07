@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # Service 1 & 3: Ingestion and Reporting API
+  api:
+    build: ./api
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/analytics
+      - REDIS_URL=redis://redis:6379
+    volumes:
+      - ./api/src:/usr/src/app/src
+    depends_on:
+      - mongo
+      - redis
+    command: npm run dev
+
+  # Service 2: Background Processor
+  processor:
+    build: ./processor
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/analytics
+      - REDIS_URL=redis://redis:6379
+    volumes:
+      - ./processor/src:/usr/src/app/src
+    depends_on:
+      - mongo
+      - redis
+    command: npm run dev
+
+  # Database
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  # Queue
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  mongo-data:
