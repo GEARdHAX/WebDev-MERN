@@ -11,10 +11,7 @@ npm-debug.log*
 yarn-debug.log*
 
 # Embedded git repositories (these have their own .git folders)
-GlobalTrend/
-Nexora/
-TalantonCore/
-Vyorius/
+
 
 # Accidental files
 git
@@ -27,3 +24,4 @@ build/
 # OS files
 .DS_Store
 Thumbs.db
+*.rar
