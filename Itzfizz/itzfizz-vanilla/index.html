@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Car Animation - Vanilla JS</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+  <main>
+    <div class="section">
+      <div class="track">
+        <div class="road">
+          <img class="car" id="car" src="car.svg" alt="car">
+          <div class="trail" id="trail"></div>
+          
+          <div class="value-add" id="valueText">
+            <!-- Letters injected by JS for WELCOME ITZFIZZ -->
+          </div>
+        </div>
+
+        <div class="stat-box" id="box1" style="background-color: #def54f; color: #111; top: 5%; right: 30%;">
+          <span>58%</span> Increase in pick up point use
+        </div>
+        <div class="stat-box" id="box2" style="background-color: #6ac9ff; color: #111; bottom: 5%; right: 35%;">
+          <span>23%</span> Decreased in customer phone calls
+        </div>
+        <div class="stat-box" id="box3" style="background-color: #333; color: #fff; top: 5%; right: 10%;">
+          <span>27%</span> Increase in pick up point use
+        </div>
+        <div class="stat-box" id="box4" style="background-color: #fa7328; color: #111; bottom: 5%; right: 12.5%;">
+          <span>40%</span> Decreased in customer phone calls
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <script src="script.js"></script>
+</body>
+</html>

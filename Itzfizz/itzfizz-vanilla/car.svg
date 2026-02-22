@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 200" fill="none">
+  <!-- Center everything vertically inside the 200 height -->
+  <!-- Car body pointing right -->
+  <!-- Assume car is 140 wide, 60 tall -->
+  <!-- x ranges 5 to 145, y ranges 70 to 130 -->
+  <rect x="5" y="75" width="140" height="50" rx="20" fill="#2a2a2a"/>
+  
+  <!-- Windshield -->
+  <rect x="70" y="80" width="40" height="40" rx="10" fill="#4a4a4a" opacity="0.8"/>
+  
+  <!-- Hood -->
+  <rect x="10" y="78" width="50" height="44" rx="6" fill="#333"/>
+  
+  <!-- Front bumper (right side) -->
+  <rect x="135" y="80" width="10" height="40" rx="5" fill="#222"/>
+  
+  <!-- Rear (left side) -->
+  <rect x="5" y="80" width="10" height="40" rx="5" fill="#222"/>
+  
+  <!-- Headlights (right) -->
+  <rect x="138" y="82" width="6" height="8" rx="2" fill="#ffdd44"/>
+  <rect x="138" y="110" width="6" height="8" rx="2" fill="#ffdd44"/>
+  
+  <!-- Taillights (left) -->
+  <rect x="6" y="82" width="4" height="8" rx="2" fill="#ff3333"/>
+  <rect x="6" y="110" width="4" height="8" rx="2" fill="#ff3333"/>
+  
+  <!-- Wheels -->
+  <!-- Front right (top) -->
+  <ellipse cx="115" cy="72" rx="10" ry="4" fill="#111"/>
+  <!-- Front left (bottom) -->
+  <ellipse cx="115" cy="128" rx="10" ry="4" fill="#111"/>
+  <!-- Rear right (top) -->
+  <ellipse cx="35" cy="72" rx="10" ry="4" fill="#111"/>
+  <!-- Rear left (bottom) -->
+  <ellipse cx="35" cy="128" rx="10" ry="4" fill="#111"/>
+  
+  <!-- Racing stripes -->
+  <rect x="15" y="90" width="120" height="2" rx="1" fill="#45db7d" opacity="0.6"/>
+  <rect x="15" y="108" width="120" height="2" rx="1" fill="#45db7d" opacity="0.6"/>
+  
+  <!-- Side mirrors -->
+  <ellipse cx="80" cy="74" rx="4" ry="3" fill="#333"/>
+  <ellipse cx="80" cy="126" rx="4" ry="3" fill="#333"/>
+</svg>
