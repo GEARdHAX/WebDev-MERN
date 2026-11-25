@@ -2,7 +2,11 @@
 
 CareFlow is a web application that hospital staff can use to record and manage patient admissions. Staff can add, view, search, filter, edit, discharge and delete patient records. Every change is saved to a PostgreSQL database hosted on Supabase.
 
-**Live application:** `<ADD-LIVE-URL-HERE>`
+**Live application:** https://careflow-frontend-iq32.onrender.com/
+
+**Live API:** https://careflow-grty.onrender.com/api (interactive docs at https://careflow-grty.onrender.com/docs)
+
+> The backend runs on Render's free tier, so the first request after a period of inactivity can take up to a minute.
 
 ## Features
 
@@ -25,12 +29,12 @@ CareFlow is a web application that hospital staff can use to record and manage p
 | Backend | Python, FastAPI, Pydantic v2, Pydantic Settings |
 | Database | Supabase PostgreSQL through SQLAlchemy 2.0 and Psycopg 3 |
 | Testing | pytest with FastAPI `TestClient` (SQLite in-memory test database) |
-| Hosting | Vercel (frontend), Render (backend), Supabase (database) |
+| Hosting | Render (frontend static site and backend web service), Supabase (database) |
 
 ## Architecture
 
 ```
-React (Vercel)  --HTTPS/JSON (Axios)-->  FastAPI (Render)  --SQLAlchemy/Psycopg-->  PostgreSQL (Supabase)
+React (Render)  --HTTPS/JSON (Axios)-->  FastAPI (Render)  --SQLAlchemy/Psycopg-->  PostgreSQL (Supabase)
 ```
 
 Data flow for a typical action, for example adding a patient:
@@ -48,6 +52,7 @@ Data flow for a typical action, for example adding a patient:
 Dscribe/
 ├── README.md
 ├── .gitignore
+├── screenshots/                    Images used in this README
 ├── backend/
 │   ├── .env.example
 │   ├── requirements.txt
@@ -153,7 +158,7 @@ npm run lint      # ESLint
 | Variable | Required | Description |
 | --- | --- | --- |
 | `DATABASE_URL` | Yes | Supabase PostgreSQL connection string. Use the **Session pooler** string from Supabase (Connect button). |
-| `FRONTEND_URL` | Yes in production | Allowed frontend origin for CORS. Use a comma-separated list for several origins, for example `http://localhost:5173,https://your-app.vercel.app`. |
+| `FRONTEND_URL` | Yes in production | Allowed frontend origin for CORS. Use a comma-separated list for several origins, for example `http://localhost:5173,https://careflow-frontend-iq32.onrender.com`. Must match the frontend address exactly, with no trailing slash. |
 | `APP_NAME` | No | Application name shown in the API docs. Default `CareFlow`. |
 | `APP_ENV` | No | Environment name. Default `development`. |
 | `DEBUG` | No | Debug flag. Default `True`. |
@@ -165,11 +170,11 @@ DATABASE_URL="postgresql://postgres.YOUR_PROJECT_REF:YOUR_PASSWORD@aws-0-YOUR_RE
 FRONTEND_URL="http://localhost:5173"
 ```
 
-### Frontend (`frontend/.env.local` locally, or Vercel environment variables)
+### Frontend (`frontend/.env.local` locally, or Render environment variables)
 
 | Variable | Required | Description |
 | --- | --- | --- |
-| `VITE_API_URL` | Yes in production | Base URL of the backend API, including `/api`. Local default: `http://localhost:8000/api`. |
+| `VITE_API_URL` | Yes in production | Base URL of the backend API, including `/api`. Vite embeds this value at build time, so set it before building. Local default: `http://localhost:8000/api`. |
 
 Never put database credentials in frontend variables. Only `VITE_` variables reach the browser.
 
@@ -258,31 +263,50 @@ Create the project and copy the Session pooler URI, as described in [Database se
 5. Set **Start Command** to `uvicorn app.main:app --host 0.0.0.0 --port $PORT`.
 6. Add environment variables:
    - `DATABASE_URL` = the Supabase Session pooler URI
-   - `FRONTEND_URL` = your Vercel URL, for example `https://your-app.vercel.app`
-7. Deploy. Check `https://YOUR-RENDER-APP.onrender.com/health`, which should return `{"status":"ok"}`.
+   - `FRONTEND_URL` = `https://careflow-frontend-iq32.onrender.com`
+7. Deploy. Check `https://careflow-grty.onrender.com/health`, which should return `{"status":"ok"}`.
 
-### 3. Vercel (frontend)
+### 3. Render (frontend)
 
-1. Import the GitHub repository.
+1. Create a **Static Site** from the GitHub repository.
 2. Set **Root Directory** to `frontend`.
-3. Framework preset: **Vite**. Build command: `npm run build`. Output directory: `dist`.
-4. Add the environment variable `VITE_API_URL` = `https://YOUR-RENDER-APP.onrender.com/api`.
-5. Deploy, then copy the Vercel URL into the Render `FRONTEND_URL` variable and redeploy the backend if the URL changed.
+3. Set **Build Command** to `npm install && npm run build`.
+4. Set **Publish Directory** to `dist`.
+5. Add the environment variable `VITE_API_URL` = `https://careflow-grty.onrender.com/api`. Set it before the first build.
+6. Deploy. If the frontend address changes, update `FRONTEND_URL` on the backend service and redeploy it.
 
 ## Screenshots
 
-Save each screenshot in `docs/screenshots/` using the file name shown, then replace the blank line with the image.
+### Dashboard
 
-| Screen | File name | Image |
-| --- | --- | --- |
-| Dashboard (desktop) | `dashboard-desktop.png` | `<ADD-IMAGE-HERE>` |
-| Add patient form | `add-patient-form.png` | `<ADD-IMAGE-HERE>` |
-| Edit patient form | `edit-patient-form.png` | `<ADD-IMAGE-HERE>` |
-| Search and filters | `search-and-filters.png` | `<ADD-IMAGE-HERE>` |
-| Delete confirmation | `delete-confirmation.png` | `<ADD-IMAGE-HERE>` |
-| Mobile view | `mobile-view.png` | `<ADD-IMAGE-HERE>` |
+![Dashboard](screenshots/dashboard-desktop.png)
 
-Once added, each image line looks like this: `![Dashboard](docs/screenshots/dashboard-desktop.png)`
+### Add patient
+
+![Add patient form](screenshots/add-patient-form.png)
+
+### Edit patient
+
+![Edit patient form](screenshots/edit-patient-form.png)
+
+### Search and filters
+
+![Search and filters](screenshots/search-and-filters.png)
+
+### Delete confirmation
+
+![Delete confirmation](screenshots/delete-confirmation.png)
+
+### Mobile view
+
+![Mobile view](screenshots/mobile-view.png)
+
+## Troubleshooting
+
+- **"Cannot reach the server" on the live site:** the backend is asleep (free tier) or its `FRONTEND_URL` does not match the frontend address. Open the API health link first, then check the browser console for a CORS error.
+- **Backend fails to start with a connection error:** check `DATABASE_URL`. Use the Session pooler string. The direct `db.<ref>.supabase.co` host is IPv6-only and fails on IPv4-only networks.
+- **Changed `VITE_API_URL` but the site still calls the old API:** the value is embedded at build time. Redeploy the frontend.
+- **Local frontend shows "Cannot reach the server":** make sure the backend is running on port 8000, or set `VITE_API_URL` to your backend address.
 
 ## Security notes
 
